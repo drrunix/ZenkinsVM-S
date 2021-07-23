@@ -4,7 +4,7 @@ variable "location" {
 }
 variable "prefix" {
   type    = string
-  default = "vmmaster"
+  default = "vmclient"
 }
 
 variable "tags" {

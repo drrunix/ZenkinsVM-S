@@ -46,7 +46,7 @@ resource "azurerm_virtual_machine" "demo-instance" {
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "vmmaster"
+    computer_name  = "vmclient"
     admin_username = "vmadmin"
     admin_password = "September@2016"
   }
@@ -62,8 +62,15 @@ resource "azurerm_virtual_machine" "demo-instance" {
     }
     inline = [
       "sudo apt-get update",
+      "sudo apt-get install -y maven",
+      "sudo apt-get install -y docker*",
+      "sudo apt-get install -y apt-transport-https gnupg2 curl",
       "sudo apt-get install openjdk-8-jdk openjdk-8-jre -y",
-      "wget https://get.jenkins.io/war-stable/2.289.2/jenkins.war",
+      "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -",
+      "echo deb https://apt.kubernetes.io/ kubernetes-xenial main | sudo tee -a /etc/apt/sources.list.d/kubernetes.list",
+      "sudo apt-get update",
+      "sudo apt-get install -y kubectl",
+      "sudo apt install -y gnupg2 pass",
     ]
   }
 }

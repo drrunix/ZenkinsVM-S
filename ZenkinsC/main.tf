@@ -13,9 +13,7 @@ provider "azurerm" {
 }
 
 # Create a resource group
-
 resource "azurerm_resource_group" "demo" {
-  name     = "vmmaster"
+  name     = "vmclient"
   location = var.location
 }
-
