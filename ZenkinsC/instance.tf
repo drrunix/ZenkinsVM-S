@@ -62,15 +62,23 @@ resource "azurerm_virtual_machine" "demo-instance" {
     }
     inline = [
       "sudo apt-get update",
+      "sudo apt-get install -y tree",
+      "sudo apt-get install -y python-pip",
       "sudo apt-get install -y maven",
       "sudo apt-get install -y docker*",
       "sudo apt-get install -y apt-transport-https gnupg2 curl",
       "sudo apt-get install openjdk-8-jdk openjdk-8-jre -y",
       "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -",
       "echo deb https://apt.kubernetes.io/ kubernetes-xenial main | sudo tee -a /etc/apt/sources.list.d/kubernetes.list",
-      "sudo apt-get update",
       "sudo apt-get install -y kubectl",
       "sudo apt install -y gnupg2 pass",
+      "sudo apt-get install software-properties-common",
+      "sudo apt-add-repository ppa:ansible/ansible -y",
+      "sudo apt-get update",
+      "sudo apt-get install ansible -y",
+      "sudo chown -R vmadmin:vmadmin /etc/ansible/",
+      "sudo pip install ansible[azure]",
+      "curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash",
     ]
   }
 }
